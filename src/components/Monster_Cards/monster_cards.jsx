@@ -24,6 +24,7 @@ export default function MonsterCards(props) {
         >
           <h2>{monster.name}</h2>
           <img
+            alt="no img"
             src={`https://robohash.org/${monster.id}?set=set4&size=180x180`}
           />
         </div>

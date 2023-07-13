@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import { useState, useEffect } from "react";
 import "./App.css";
 import SearchBox from "./components/searchbox/searchbox";
@@ -6,20 +5,20 @@ import MonsterCards from "./components/Monster_Cards/monster_cards";
 
 function App() {
   const [monsters, setMonsters] = useState([]);
-  const [filteredMonsters, setFilteredMonsters] = useState([]); // filtered monsters
   const [searchField, setSearchField] = useState("");
+  const [filteredMonsters, setFilteredMonsters] = useState(monsters);
 
   const onSearchChange = (e) => {
-    setSearchField(e.target.value);
+    setSearchField(e.target.value.toLowerCase());
   };
 
   useEffect(() => {
     setFilteredMonsters(
       monsters.filter((monster) => {
-        return monster.name.toLowerCase().includes(searchField.toLowerCase());
+        return monster.name.toLowerCase().includes(searchField);
       })
     );
-  }, [searchField]);
+  }, [monsters, searchField]);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
